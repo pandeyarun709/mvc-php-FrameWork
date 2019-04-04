@@ -51,6 +51,7 @@
       
        // if URL has params then it runs
        if($req_method != '') {
+         print_r($method);
          /*
           * Outputs The Required controller and the req *method respectively
           * @return Required Method;
@@ -104,7 +105,7 @@
            *  return object
            */
           $ModelObj = new $model;
-          $ControllerObj = new $controller(ucfirst($req_method.'Model')); 
+          $ControllerObj = new $controller(ucfirst($req_model.'Model')); 
 
           
           /*
@@ -124,14 +125,13 @@
             * Outputs The Required controller and the req *method respectively
             * @return Required Method;
             */
-            print $ControllerObj->$method($req_param);
+             print $ControllerObj->$method($req_param);
 
            } else {
              // This work only url not contain any parameter
              print $ControllerObj->index();
            }
       } else {
-        
         header('HTTP/1.1 404 Not Found');
         die('404 - The file - '.$app->req_controller.' - not found');
         //require the 404 controller and initiate it
